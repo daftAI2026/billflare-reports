@@ -1,0 +1,5 @@
+# [INPUT]: GitHub Issue 模板选择器设置
+# [OUTPUT]: 普通访客只能选择仓库声明的 Issue Forms
+# [POS]: .github/ISSUE_TEMPLATE 的空白 Issue 入口边界
+# [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+blank_issues_enabled: false

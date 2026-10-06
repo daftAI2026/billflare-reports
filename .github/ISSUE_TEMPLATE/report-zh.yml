@@ -1,0 +1,83 @@
+# [INPUT]: 公开来源、可选别名与金额、产品、后续链接和事实摘要
+# [OUTPUT]: 带 pending-review 标签的公开中文报告 Issue
+# [POS]: 中文收集表单；GitHub 将答案写入公开 Issue 正文。
+# [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+name: Cloudflare 账单报告（中文）
+description: 提交有公开来源的账单报告，供维护者审阅。
+title: "Cloudflare 账单报告"
+labels:
+  - pending-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 此报告会公开
+
+        任何人都能查看此 Issue。`pending-review` 只表示等待来源审阅，不表示事实已核验或报告已收录到 Billflare。
+
+        请填写公开 HTTPS 来源和事实描述。请勿添加 Markdown 图片、嵌入 HTML、脚本、`@提及` 或私人链接。请勿填写凭据、账号标识、邮箱、支付信息、私人账单页面、私信或未打码截图。
+  - type: input
+    id: original-source
+    attributes:
+      label: 原始公开来源 URL
+      description: 请使用能支持报告的公开 HTTPS 页面。不要使用私人控制台，也不要提交含凭据或秘密查询参数的 URL。
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: reporter-alias
+    attributes:
+      label: 报告人别名（选填）
+      description: 别名会公开显示。别名由用户填写，不代表身份已核验。请勿填写联系方式。
+      placeholder: 可选公开别名
+    validations:
+      required: false
+  - type: dropdown
+    id: cloudflare-product
+    attributes:
+      label: Cloudflare 产品
+      description: 请选择来源中提到的产品。
+      options:
+        - Workers
+        - Durable Objects
+        - R2
+        - D1
+        - Workers AI
+        - Containers
+        - Browser Rendering
+        - Smart Shield Argo
+        - Other / 其他
+    validations:
+      required: true
+  - type: input
+    id: reported-amount
+    attributes:
+      label: 报告金额与币种（选填）
+      description: 按来源原样填写，并注明币种和账期，例如 USD 432.10/月。不要换算。
+      placeholder: USD 432.10/月
+    validations:
+      required: false
+  - type: textarea
+    id: follow-up-sources
+    attributes:
+      label: 后续进展的公开来源（选填）
+      description: 每行填写一个公开 URL。不要填写私人账户链接或含秘密查询参数的链接。
+      placeholder: https://
+    validations:
+      required: false
+  - type: textarea
+    id: factual-summary
+    attributes:
+      label: 事实摘要
+      description: 描述来源明确说了什么、发生了什么变化、哪些信息仍未知。请区分报告内容与个人推断。
+      placeholder: 描述报告中的费用，并说明公开来源。
+    validations:
+      required: true
+  - type: checkboxes
+    id: public-consent
+    attributes:
+      label: 公开投稿确认
+      description: 必须同意后才能创建公开 Issue。
+      options:
+        - label: 我同意将本表单中的来源、别名、产品、金额、后续链接和摘要发布在此公开仓库。我已删除私人信息。我明白此报告尚未在此核验，也不会自动收录到 Billflare。
+          required: true
