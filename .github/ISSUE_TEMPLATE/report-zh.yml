@@ -1,4 +1,4 @@
-# [INPUT]: 公开来源、可选别名与金额、产品、后续链接和事实摘要
+# [INPUT]: 公开来源、可选别名与金额数字、产品、后续链接和事实摘要
 # [OUTPUT]: 带 pending-review 标签的公开中文报告 Issue
 # [POS]: 中文收集表单；GitHub 将答案写入公开 Issue 正文。
 # [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
@@ -52,9 +52,9 @@ body:
   - type: input
     id: reported-amount
     attributes:
-      label: 报告金额与币种（选填）
-      description: 按来源原样填写，并注明币种和账期，例如 USD 432.10/月。不要换算。
-      placeholder: USD 432.10/月
+      label: 报告金额（USD，选填）
+      description: 只填数字，例如 432.10，不加币种或账期。Billflare 会补充 USD；维护者按原始来源核对金额与账期。
+      placeholder: "432.10"
     validations:
       required: false
   - type: textarea
